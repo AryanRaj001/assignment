@@ -26,7 +26,7 @@ app.post("/product", async (req, res) => {
     const productData = req.body;
     const product = await Product.create(productData);
 
-    // Calculate and set the offer for the newly created product
+
     const mrp = product.price.mrp;
     const specialPrice = product.price.specialPrice;
     const discountPercentage = ((mrp - specialPrice) / mrp) * 100;
@@ -56,13 +56,13 @@ app.put("/product/update/:id", async (req, res) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    // Calculate and set the offer for the updated product
+
     const mrp = updatedProduct.price.mrp;
     const specialPrice = updatedProduct.price.specialPrice;
     const discountPercentage = ((mrp - specialPrice) / mrp) * 100;
     updatedProduct.offer = `${discountPercentage.toFixed(2)}% off`;
 
-    await updatedProduct.save(); // Save the product with the updated offer
+    await updatedProduct.save();
 
     res.json(updatedProduct);
   } catch (error) {
