@@ -45,7 +45,7 @@ app.put("/product/update/:id", async (req, res) => {
     const id = req.params.id;
     const updatedProductData = req.body;
 
-    // Update the product
+
     const updatedProduct = await Product.findByIdAndUpdate(
       id,
       updatedProductData,
